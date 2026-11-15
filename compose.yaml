@@ -1,0 +1,16 @@
+services:
+  clinic-booking:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      API_KEY: ${API_KEY:?Set API_KEY in .env}
+      DATABASE_PATH: /data/booking.sqlite3
+      DATABASE_URL: ${DATABASE_URL:-}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8000}
+    volumes:
+      - booking-data:/data
+    restart: unless-stopped
+
+volumes:
+  booking-data:
