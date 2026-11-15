@@ -413,3 +413,4 @@ app.mount("/static", StaticFiles(directory=ROOT / "static"), name="static")
 @app.get("/", include_in_schema=False)
 def homepage() -> FileResponse:
     return FileResponse(ROOT / "static" / "index.html")
+        
