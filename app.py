@@ -407,10 +407,14 @@ def ui_create_booking(payload: BookingInput, response: Response, idempotency_key
     return create_booking(payload, response, idempotency_key)
 
 
-app.mount("/static", StaticFiles(directory=ROOT / "static"), name="static")
+STATIC_DIR = ROOT / "static"
+if STATIC_DIR.is_dir():
+    app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 
 @app.get("/", include_in_schema=False)
 def homepage() -> FileResponse:
-    return FileResponse(ROOT / "static" / "index.html")
-        
+    index = STATIC_DIR / "index.html"
+    if not index.is_file():
+        raise error(404, "index.html was not bundled with the deployment")
+    return FileResponse(index)
