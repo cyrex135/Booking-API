@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f8f7">
+  <title>Book a clinic appointment</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="top"><a class="brand" href="/" aria-label="Harbor clinic home"><span class="brand-mark">+</span><span>Harbor <b>Clinic</b></span></a><span class="secure">● &nbsp;Secure appointment booking</span></header>
+    <section class="intro"><p class="eyebrow">YOUR HEALTH, MADE SIMPLE</p><h1>Book an appointment</h1><p>Choose a time that works for you. We’ll send your confirmation right away.</p></section>
+    <div class="layout">
+      <section class="card slots-card">
+        <div class="section-title"><div><p class="eyebrow">STEP 1</p><h2>Choose a time</h2></div><label class="date-label" for="day">Date</label><input id="day" type="date"></div>
+        <div id="slots" class="slot-grid" aria-live="polite"><p class="muted">Loading available times…</p></div>
+        <p class="note">Appointments are shown in your local time.</p>
+      </section>
+      <section class="card form-card"><div class="section-title"><div><p class="eyebrow">STEP 2</p><h2>Your details</h2></div></div>
+        <form id="booking-form">
+          <label for="name">Full name</label><input id="name" name="name" autocomplete="name" required minlength="1" maxlength="120" placeholder="Jane Doe">
+          <label for="email">Email address</label><input id="email" name="email" autocomplete="email" type="email" required placeholder="jane@example.com">
+          <p id="selected" class="selection">Select an available time to continue.</p>
+          <button id="submit" type="submit" disabled>Confirm appointment <span aria-hidden="true">→</span></button>
+          <p id="message" class="message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </div>
+    <footer>Questions? Contact the clinic directly. &nbsp;·&nbsp; Your details are handled securely.</footer>
+  </main>
+  <dialog id="confirmation"><div class="success-icon">✓</div><p class="eyebrow">YOU’RE ALL SET</p><h2>Appointment confirmed</h2><p id="confirm-copy"></p><p class="reference">Booking reference <strong id="reference"></strong></p><button id="close-dialog" type="button">Done</button></dialog>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
